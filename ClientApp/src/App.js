@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.css';
 import { Header } from './components/Header';
+import { Users } from './components/Users';
 import CreateUser from './components/CreateUser';
 import { DisplayBoard } from './components/DisplayBoard';
 import { getAllUsers, createUser } from './services/UserService'
@@ -63,6 +64,9 @@ export default class App extends Component {
                 </DisplayBoard>
             </div>
           </div>
+        </div>
+        <div className="row mrgnbtm">
+          <Users users={this.state.users}></Users>
         </div>
       </div>
     );
