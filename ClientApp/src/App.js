@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.css';
 import { Header } from './components/Header';
 import CreateUser from './components/CreateUser';
+import { DisplayBoard } from './components/DisplayBoard';
 import { getAllUsers, createUser } from './services/UserService'
 
 export default class App extends Component {
@@ -20,6 +20,14 @@ export default class App extends Component {
         this.setState({numberOfUsers: this.state.numberOfUsers + 1})
     });
   } 
+
+  getAllUsers = () => {
+    getAllUsers()
+      .then(users => {
+        console.log(users)
+        this.setState({users: users, numberOfUsers: users.length})
+      });
+  }
 
   onChangeForm = (e) => {
     let user = this.state.user
@@ -46,6 +54,13 @@ export default class App extends Component {
                   createUser={this.createUser}
                   >
                 </CreateUser>
+            </div>
+            <div className="col-md-4">
+                <DisplayBoard
+                  numberOfUsers={this.state.numberOfUsers}
+                  getAllUsers={this.getAllUsers}
+                >
+                </DisplayBoard>
             </div>
           </div>
         </div>
